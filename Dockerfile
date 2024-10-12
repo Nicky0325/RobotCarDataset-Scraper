@@ -1,16 +1,16 @@
 # os
-FROM ubuntu:16.04
+FROM python:3.9-slim
 
 # apt
-RUN apt-get -y update \
-	&& apt-get install -y software-properties-common \
-	&& apt-get -y update \
-	&& apt-get install -y git python-pip python3-pip
+RUN apt-get -y update 
 
-# pip
-RUN git clone https://github.com/matthewgadd/RobotCarDataset-Scraper.git \
-    && cd RobotCarDataset-Scraper \
-    && pip3 install -r requirements.txt
+# # pip
+# RUN git clone https://github.com/matthewgadd/RobotCarDataset-Scraper.git \
+#     && cd RobotCarDataset-Scraper 
+WORKDIR /RobotCarDataset-Scraper
+COPY . /RobotCarDataset-Scraper
+
+RUN pip3 install -r requirements.txt
 
 # alias
 RUN echo 'alias python=python3' >> /root/.bashrc \
