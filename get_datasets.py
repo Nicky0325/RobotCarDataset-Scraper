@@ -43,8 +43,7 @@ def main():
 
             # parse text for sensor type
             start = [
-                text_location.end() for text_location in re.finditer(
-                    "download/\?filename=datasets", text)]
+                text_location.end() for text_location in re.finditer(r"download/\?filename=datasets", text)]
             sensor_types = []
             for s in start:
                 ss = s
